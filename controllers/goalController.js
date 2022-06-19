@@ -8,7 +8,7 @@ const Goal = require('../models/goalModel');
 // @access Private
 const getGoals = asyncHandler(async (req, res) => {
     const goals = await Goal.find({})
-    res.status(200).json(goals);//{message: 'get goals'});
+    res.status(200).json(goals); //{message: 'get goals'});
 })
 
 // @desc Post goals
