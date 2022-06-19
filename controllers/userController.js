@@ -69,12 +69,19 @@ const loginUser = asyncHandler(async(req, res) => {
 // @route GET /api/users/me
 // @access Public
 const getUser = asyncHandler(async(req, res) => {
-    res.json({message: 'User data'})
+    const { _id, name, email } = await User.findById(req.user.id)
+    
+    res.status(200).json({
+        id: _id,
+        name,
+        email
+    })
 })
 
 // Generate Token (JWT)
 const generateToken = (id) => {
     // 3 arguments: payload, secret, token expiration
+    //payload could be anything else too: name, email ...
     return jwt.sign({id}, process.env.JWT_SECRET,{
         expiresIn: '30d'
     })
